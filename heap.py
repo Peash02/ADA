@@ -1,3 +1,7 @@
+import time
+import matplotlib.pyplot as plt
+import random
+
 def max_heapify(arr,n,i):
     largest = i
     left = 2* i + 1
@@ -26,7 +30,16 @@ def heapsort(arr):
     return arr
 
 if __name__ == "__main__":
-    data = [64,34,25,12,22,11,90]
-    print("Original Array:",data)
-    print("Sorted Array:",heapsort(data.copy()))
+    sizes = [5000, 6000, 7000, 8000, 9000, 10000]
+    times = []
+    for s in sizes:
+        arr = [random.randint(1, 10000) for _ in range(s)]
+        start = time.time()
+        heapsort(arr)
+        end = time.time()
+        times.append(end - start)
+    print(sizes)
+    print(times)
+    plt.plot(sizes, times)
+    plt.show()
 
